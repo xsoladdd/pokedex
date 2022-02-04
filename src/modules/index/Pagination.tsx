@@ -7,12 +7,14 @@ interface PaginationProps {
   count: number;
   perPageCount: number;
   offset: number;
+  hasNext: boolean;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   handleNext,
   handleBack,
   offset,
+  hasNext,
 }) => {
   const hasback = offset !== 0;
 
@@ -72,13 +74,13 @@ const Pagination: React.FC<PaginationProps> = ({
             </div> */}
           </div>
           <button
-            disabled={!handleNext}
+            disabled={!hasNext}
             onClick={handleNext}
             className={joinClass(
               `h-12 w-12 ml-1 flex justify-center items-center rounded-full`,
-              handleNext
-                ? `bg-gray-200  cursor-pointer`
-                : `bg-gray-300  cursor-not-allowed`
+              !hasNext
+                ? `bg-gray-300  cursor-not-allowed`
+                : `bg-gray-200  cursor-pointer`
             )}
           >
             <svg

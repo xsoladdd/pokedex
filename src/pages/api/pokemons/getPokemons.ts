@@ -17,9 +17,12 @@ const getPokemons = async (_req: NextApiRequest, res: NextApiResponse) => {
 
     let sorted = pokemonData;
     if (search) {
-      sorted = sorted.filter(({ name }) => name.includes(search));
+      sorted = sorted
+        .filter(({ name }) => name.includes(search))
+        .slice(offset, offset + limit);
+    } else {
+      sorted = sorted.slice(offset, offset + limit);
     }
-    sorted = sorted.slice(offset, offset + limit);
 
     const result: getPokemonsResult = {
       count: pokemonData.length,

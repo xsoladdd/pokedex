@@ -15,6 +15,14 @@ const Index: React.FC = ({}) => {
   const [search, setSearch] = useState("");
   const searchDebounce = useDebounce(search, 500);
 
+  useEffect(() => {
+    if (offset === 0) {
+      query.refetch();
+    } else {
+      setOffset(0);
+    }
+  }, [searchDebounce]);
+
   const query = useQuery(
     ["pokemons", [offset]],
     async () => {
@@ -28,9 +36,6 @@ const Index: React.FC = ({}) => {
       keepPreviousData: false,
     }
   );
-  useEffect(() => {
-    query.refetch();
-  }, [searchDebounce]);
 
   return (
     <Layout>
@@ -62,6 +67,7 @@ const Index: React.FC = ({}) => {
               handleNext={() => {
                 setOffset(offset + limit);
               }}
+              hasNext={query.data?.pokemons.length === limit}
               handleBack={() => {
                 if (offset >= limit) setOffset(offset - limit);
               }}
