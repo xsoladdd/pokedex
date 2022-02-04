@@ -12,12 +12,9 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({
   handleNext,
   handleBack,
-  perPageCount,
   offset,
-  count,
 }) => {
   const hasback = offset !== 0;
-  const pageNumber = count / perPageCount;
 
   return (
     <>
