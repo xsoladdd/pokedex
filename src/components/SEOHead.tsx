@@ -3,13 +3,20 @@ import React from "react";
 
 interface SEOHeadProps {
   title?: string;
+  thumbnailUrl?: string;
 }
 
-const SEOHead: React.FC<SEOHeadProps> = ({ title }) => {
+const SEOHead: React.FC<SEOHeadProps> = ({ title, thumbnailUrl }) => {
   return (
     <>
       <Head>
         <title>Poke-pedia{title ? ` - ${title}` : ``}</title>
+        <meta
+          name="thumbnail"
+          content={`${
+            thumbnailUrl ? thumbnailUrl : `/android-icon-192x192.png`
+          }`}
+        />
         <meta
           name="description"
           content="A friendly pokepedia made by Ericson Funtanar"
