@@ -87,7 +87,6 @@ const Index: React.FC = ({}) => {
                 const {
                   sprites: { front_default },
                   name,
-                  id,
                 } = pokemon;
                 const img: string = front_default
                   ? front_default

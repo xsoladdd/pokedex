@@ -1,6 +1,5 @@
-import React from "react";
 import NextImage from "next/image";
-import Link from "next/link";
+import React from "react";
 interface PokemonThumbnailProps {
   img: string;
   title: string;
