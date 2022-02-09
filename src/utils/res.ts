@@ -1,1 +1,3 @@
-export const PokemonApiRoute = "https://pokeapi.co/api/v2/pokemon";
+export const PokemonApiRoute = "http://localhost:3000/";
+
+const x = {};

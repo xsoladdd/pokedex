@@ -3,9 +3,14 @@ import React from "react";
 interface SearchInputProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setLoading: () => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ search, setSearch }) => {
+const SearchInput: React.FC<SearchInputProps> = ({
+  search,
+  setSearch,
+  setLoading,
+}) => {
   return (
     <>
       <div className="pb-5">
@@ -16,7 +21,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ search, setSearch }) => {
               className="w-full px-4 py-1 text-gray-800 bg-gray-100 dark:bg-gray-200 rounded-full focus:outline-none"
               placeholder="Search"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setLoading();
+              }}
             />
           </div>
           <div>
