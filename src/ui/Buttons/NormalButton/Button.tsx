@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`text-white border-0 px-3 disabled:opacity-75 focus:outline-none rounded ${sizeClass} ${colorClass} ${className}`}
+      className={`text-white border-0 px-4 disabled:opacity-75 focus:outline-none rounded ${sizeClass} ${colorClass} ${className}`}
       onClick={onClick}
       {...rest}
       // type={typeof type === "string" ? "button" : type}

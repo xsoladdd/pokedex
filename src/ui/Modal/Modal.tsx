@@ -1,4 +1,5 @@
-import React from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import React, { Fragment } from "react";
 import Button from "../Buttons/NormalButton/Button";
 
 interface ModalProps {
@@ -13,40 +14,62 @@ const Modal: React.FC<ModalProps> = ({
   children,
   title = "Title",
 }) => {
-  if (status === false) {
-    return null;
-  }
   return (
     <>
-      <div className="fixed w-full h-screen overflow-hidden  bg-gray-900 bg-opacity-20 top-0 left-0 z-10 flex place-items-center">
-        <div className="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl">
-          <div className="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg">
-            <p className="font-semibold text-gray-800">{title}</p>
-            <button onClick={dismiss}>
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
+      <Transition appear show={status} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto"
+          onClose={() => dismiss}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0" />
+            </Transition.Child>
+
+            {/* This element is to trick the browser into centering the modal contents. */}
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-700 shadow-xl rounded-2xl">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50"
+                >
+                  {title}
+                </Dialog.Title>
+                <div className="mt-2">{children}</div>
+
+                <div className="mt-4 flex justify-center ">
+                  <Button onClick={dismiss} variant="info">
+                    Got it, Thanks!
+                  </Button>
+                </div>
+              </div>
+            </Transition.Child>
           </div>
-          {/* Content Container */}
-          <div className="flex flex-col px-6 py-5 bg-gray-50">{children}</div>
-          <div className="flex flex-row  justify-end p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg">
-            {/* <p className="font-semibold text-gray-600">Cancel</p> */}
-            <Button onClick={dismiss}>Dismiss</Button>
-          </div>
-        </div>
-      </div>
+        </Dialog>
+      </Transition>
     </>
   );
 };

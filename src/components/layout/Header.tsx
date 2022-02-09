@@ -1,10 +1,10 @@
 import { useTheme } from "next-themes";
-import React from "react";
-import { isDarkmode } from "../../helper/isDarkmode";
-import Switch from "../../ui/switch/Switch";
-import logo from "../../assets/svg/logo.svg";
 import NextImage from "next/image";
 import NextLink from "next/link";
+import React from "react";
+import logo from "../../assets/svg/logo.svg";
+import { isDarkmode } from "../../helper/isDarkmode";
+import DarkmodeSwitch from "./DarkmodeSwitch";
 const Header: React.FC = ({}) => {
   // const [darkMode, setDarkMode] = useState(true);
 
@@ -12,7 +12,7 @@ const Header: React.FC = ({}) => {
 
   return (
     <>
-      <header className="text-gray-600 body-font">
+      <header className="text-gray-600 body-font dark:bg-gray-900">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <NextLink href={"/"}>
             <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -23,10 +23,7 @@ const Header: React.FC = ({}) => {
             </a>
           </NextLink>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 hover:text-gray-900 hover:dark:text-gray-300 dark:text-white">
-              First Link
-            </a>
-            <Switch
+            <DarkmodeSwitch
               status={isDarkmode(theme)}
               onClick={() =>
                 isDarkmode(theme) ? setTheme("light") : setTheme("dark")

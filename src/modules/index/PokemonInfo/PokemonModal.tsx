@@ -7,7 +7,7 @@ import TableData from "./TableData";
 interface PokemonModalProps {
   status: boolean;
   dismissedModal: () => void;
-  pokemon: PokemonInterface;
+  pokemon: PokemonInterface | undefined;
 }
 
 const PokemonModal: React.FC<PokemonModalProps> = ({
@@ -21,7 +21,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
       <Modal
         status={status}
         dismiss={dismissedModal}
-        title={`Pokemon No. ${pokemon.id}`}
+        // title={`Pokemon No.  `}
+        title={`Pokemon No. ${pokemon?.id ? pokemon.id : ""}`}
       >
         {/* {JSON.stringify(pokemon)} */}
         <div>
@@ -29,18 +30,20 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
             <div className=" flex place-items-center place-content-center">
               {/* Image Wrapper */}
               <div className="">
-                {pokemon?.sprites?.front_default && (
+                {pokemon?.sprites?.front_default ? (
                   <Image
                     src={pokemon?.sprites?.front_default}
                     alt="aw"
                     height="120"
                     width="120"
                   />
+                ) : (
+                  <div className="h-[125px] w-[130px] "></div>
                 )}
               </div>
             </div>
             <div className="">
-              <table className="table-auto border-gray-200 border-2 round-xl  w-full">
+              <table className="table-auto border-gray-200 dark:border-gray-500 border-2 round-xl  w-full">
                 <tbody>
                   <tr>
                     <TableData>
@@ -68,7 +71,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
                     </TableData>
                     <TableData>
                       <span className="capitalize">
-                        {pokemon.types
+                        {pokemon?.types
                           .map(({ type: { name } }) => name)
                           .join(", ")}
                       </span>

@@ -51,28 +51,39 @@ const Index: React.FC = ({}) => {
 
   return (
     <Layout>
-      {modalInfo.status && typeof modalInfo.pokemon !== "undefined" && (
-        <PokemonModal
-          pokemon={modalInfo.pokemon}
-          status={modalInfo.status}
-          dismissedModal={() =>
-            setModalInfo((oldProps) => ({
-              ...oldProps,
-              status: false,
-              pokemon: undefined,
-            }))
-          }
-        />
-      )}
+      <PokemonModal
+        pokemon={modalInfo.pokemon}
+        status={modalInfo.status}
+        dismissedModal={() =>
+          setModalInfo((oldProps) => ({
+            ...oldProps,
+            status: false,
+            // pokemon: undefined,
+          }))
+        }
+      />
       {/* Wrapper */}
       <div className="">
         {/* Search Wrapper */}
-        <SearchInput
-          search={search}
-          setSearch={setSearch}
-          setLoading={() => setIsFetching(true)}
-        />
-
+        <div className="flex flex-col md:flex-row place-items-center place-content-center gap-5 pb-10 ">
+          <SearchInput
+            search={search}
+            setSearch={setSearch}
+            setLoading={() => setIsFetching(true)}
+          />
+          <Pagination
+            handleNext={() => {
+              setOffset(offset + limit);
+            }}
+            hasNext={query.data?.pokemons.length === limit}
+            handleBack={() => {
+              if (offset >= limit) setOffset(offset - limit);
+            }}
+            count={query.data?.count ? query.data?.count : 0}
+            offset={offset}
+            perPageCount={limit}
+          />
+        </div>
         {query.isLoading || isFetching ? (
           <div className="py-8 mx-auto">
             <Loading />
@@ -110,18 +121,6 @@ const Index: React.FC = ({}) => {
                 );
               })}
             </div>
-            <Pagination
-              handleNext={() => {
-                setOffset(offset + limit);
-              }}
-              hasNext={query.data?.pokemons.length === limit}
-              handleBack={() => {
-                if (offset >= limit) setOffset(offset - limit);
-              }}
-              count={query.data?.count}
-              offset={offset}
-              perPageCount={limit}
-            />
           </>
         )}
       </div>
