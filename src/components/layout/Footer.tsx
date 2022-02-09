@@ -5,7 +5,7 @@ import logo from "../../assets/svg/logo.svg";
 const Footer: React.FC = ({}) => {
   return (
     <>
-      <footer className="text-gray-600  bg-red-100 dark:bg-gray-900">
+      <footer className="text-gray-600 bg-red-100 dark:bg-gray-900">
         <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <div className="w-14 h-14 text-white p-2  ">

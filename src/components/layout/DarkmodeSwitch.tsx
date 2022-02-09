@@ -38,7 +38,7 @@ const DarkmodeSwitch: React.FC<SwitchProps> = ({ status, onClick }) => {
           ) : (
             <div className="flex place-items-center place-content-center h-full w-full">
               <svg
-                className="h-6 w-6 text-yellow-200"
+                className="h-6 w-6 text-gray-7500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
