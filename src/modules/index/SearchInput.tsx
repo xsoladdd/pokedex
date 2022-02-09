@@ -13,7 +13,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   return (
     <>
-      <div className="flex items-center max-w-md  bg-gray-100 dark:bg-gray-200 rounded-lg">
+      <div className="flex items-center max-w-md  bg-gray-100 dark:bg-gray-200 border-2 border-gray-300 rounded-lg">
         <div className="w-full">
           <input
             type="text"

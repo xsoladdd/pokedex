@@ -16,7 +16,7 @@ const DarkmodeSwitch: React.FC<SwitchProps> = ({ status, onClick }) => {
         relative inline-flex flex-shrink-0 h-[38px] w-[74px] border-2  border-gray-200 dark:border-transparent border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
       >
         <span
-          className={`${status ? "translate-x-9 " : "translate-x-0 bg-gray-700"}
+          className={`${status ? "translate-x-9 " : "translate-x-0 bg-gray-500"}
          pointer-events-none inline-block h-[34px] w-[34px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
         >
           {status ? (
